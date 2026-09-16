@@ -982,7 +982,12 @@ export class SessionRunEngine {
             });
           }
 
-          if (payload.failurePolicy !== 'continue' || payload.failureKind !== 'observer-provider') {
+          if (
+            !Object.hasOwn(payload, 'failurePolicy') ||
+            !Object.hasOwn(payload, 'failureKind') ||
+            payload.failurePolicy !== 'continue' ||
+            payload.failureKind !== (operationType === 'reflection' ? 'reflector-model' : 'observer-model')
+          ) {
             this.abortForOmFailure({ operationType, stage: 'run', error });
             return { message: state.currentMessage };
           }
@@ -1031,7 +1036,12 @@ export class SessionRunEngine {
             error,
           });
 
-          if (payload.failurePolicy !== 'continue' || payload.failureKind !== 'observer-provider') {
+          if (
+            !Object.hasOwn(payload, 'failurePolicy') ||
+            !Object.hasOwn(payload, 'failureKind') ||
+            payload.failurePolicy !== 'continue' ||
+            payload.failureKind !== (operationType === 'reflection' ? 'reflector-model' : 'observer-model')
+          ) {
             this.abortForOmFailure({ operationType, stage: 'buffering', error });
             return { message: state.currentMessage };
           }

@@ -248,7 +248,7 @@ export class AsyncBufferObservationStrategy extends ObservationStrategy {
       startedAt: this.startedAt,
       tokensAttempted,
       error,
-      failurePolicy: this.observationConfig.onFailure,
+      failurePolicy: this.observationConfig.failurePolicy,
       recordId: record.id,
       threadId,
     });

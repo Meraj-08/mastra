@@ -4194,7 +4194,7 @@ describe('ObservationalMemory Integration', () => {
         observation: {
           messageTokens: 500,
           previousObserverTokens: 2000,
-          onFailure: 'abort',
+          failurePolicy: 'abort',
         },
         reflection: {
           observationTokens: 1000,
@@ -10324,7 +10324,7 @@ describe('Full Async Buffering Flow', () => {
     observerResponses?: string[];
     /** Number of observer calls that fail before succeeding */
     observerFailures?: number;
-    onFailure?: 'abort' | 'continue';
+    failurePolicy?: 'abort' | 'continue';
   }) {
     const { MessageList } = await import('@mastra/core/agent');
     const { RequestContext } = await import('@mastra/core/di');
@@ -10402,7 +10402,7 @@ describe('Full Async Buffering Flow', () => {
         bufferTokens: opts.bufferTokens,
         bufferActivation: opts.bufferActivation,
         blockAfter: opts.blockAfter,
-        onFailure: opts.onFailure,
+        failurePolicy: opts.failurePolicy,
       },
       reflection: {
         observationTokens: opts.reflectionObservationTokens,
@@ -10548,7 +10548,7 @@ describe('Full Async Buffering Flow', () => {
         reflectionObservationTokens: 50000,
         messageCount: 20,
         observerFailures: 1,
-        onFailure: 'continue',
+        failurePolicy: 'continue',
       });
 
     await step(0);
