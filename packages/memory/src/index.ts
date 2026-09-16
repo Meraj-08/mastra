@@ -116,6 +116,7 @@ type MemoryObservationalMemoryOptions = Omit<ObservationalMemoryOptions, 'model'
   activateAfterIdle?: ObservationalMemoryConfig['activateAfterIdle'];
   activateOnProviderChange?: ObservationalMemoryConfig['activateOnProviderChange'];
   temporalMarkers?: boolean;
+  onDebugEvent?: ObservationalMemoryConfig['onDebugEvent'];
   hooks?: ObservationalMemoryConfig['hooks'];
 };
 
@@ -2036,6 +2037,7 @@ ${workingMemory}`;
       model: omConfig.model,
       mastra: this._mastraInstance,
       onIndexObservations,
+      onDebugEvent: omConfig.onDebugEvent,
       hooks: omConfig.hooks,
       observation: omConfig.observation
         ? {
