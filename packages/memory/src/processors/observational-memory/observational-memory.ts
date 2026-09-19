@@ -3809,6 +3809,9 @@ ${formattedMessages}
         observed = result.observed;
         observationUsage = result.usage;
         observationProviderMetadata = result.providerMetadata;
+        // Strategies that swallow a failure under `failurePolicy: 'continue'`
+        // return the error instead of throwing; hooks still need to see it.
+        observationError = result.error;
       });
     } catch (error) {
       lifecycleError = error;
